@@ -1,30 +1,33 @@
 <script>
-	export let name;
+  import BannerViewer from "./banner_viewer/BannerViewer.svelte";
+
+  let test_patterns = [
+    { Pattern: "flo", Color: 2 },
+    { Pattern: "hhb", Color: 15 },
+    { Pattern: "cs", Color: 2 },
+    { Pattern: "mc", Color: 15 },
+    { Pattern: "tts", Color: 15 },
+    { Pattern: "bts", Color: 15 }
+  ];
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
-
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
+  .center {
+    width: 100%;
+    height: 100%;
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+  .center > :global(*) {
+    margin: 1rem;
+  }
 </style>
+
+<div class="center">
+  <BannerViewer patterns={test_patterns} base={15} />
+  <BannerViewer patterns={test_patterns} base={15} shield />
+
+</div>
