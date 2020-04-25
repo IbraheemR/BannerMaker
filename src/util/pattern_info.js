@@ -4,14 +4,16 @@ export const patterns = new Map([
         {
             name: "Banner Background",
             bannerImage: "/patterns/banner/base.png",
-            shieldImage: "/patterns/shield/base.png"
+            shieldImage: "/patterns/shield/base.png",
+            background: true
         }
     ],
     [
         "shield",
         {
             name: "Shield Base",
-            shieldImage: "/patterns/shield/shield_base.png"
+            shieldImage: "/patterns/shield/shield_base.png",
+            background: true
         }
     ],
     ["bs",
@@ -337,22 +339,22 @@ export const patterns = new Map([
 ])
 
 export const colors = [
-    { name: "White", rgb: 16383998 },
-    { name: "Orange", rgb: 16351261 },
-    { name: "Magenta", rgb: 13061821 },
-    { name: "Light_blue", rgb: 3847130 },
-    { name: "Yellow", rgb: 16701501 },
-    { name: "Lime", rgb: 8439583 },
-    { name: "Pink", rgb: 15961002 },
-    { name: "Gray", rgb: 4673362 },
-    { name: "Light_gray", rgb: 10329495 },
-    { name: "Cyan", rgb: 1481884 },
-    { name: "Purple", rgb: 8991416 },
-    { name: "Blue", rgb: 3949738 },
-    { name: "Brown", rgb: 8606770 },
-    { name: "Green", rgb: 6192150 },
-    { name: "Red", rgb: 11546150 },
-    { name: "Black", rgb: 1908001 }
+    { id: 0, name: "White", rgb: 16383998, rainbow: 0 },
+    { id: 1, name: "Orange", rgb: 16351261, rainbow: 5 },
+    { id: 2, name: "Magenta", rgb: 13061821, rainbow: 13 },
+    { id: 3, name: "Light Blue", rgb: 3847130, rainbow: 10 },
+    { id: 4, name: "Yellow", rgb: 16701501, rainbow: 6 },
+    { id: 5, name: "Lime", rgb: 8439583, rainbow: 7 },
+    { id: 6, name: "Pink", rgb: 15961002, rainbow: 14 },
+    { id: 7, name: "Gray", rgb: 4673362, rainbow: 2 },
+    { id: 8, name: "Light Gray", rgb: 10329495, rainbow: 1 },
+    { id: 9, name: "Cyan", rgb: 1481884, rainbow: 9 },
+    { id: 10, name: "Purple", rgb: 8991416, rainbow: 12 },
+    { id: 11, name: "Blue", rgb: 3949738, rainbow: 11 },
+    { id: 12, name: "Brown", rgb: 8606770, rainbow: 15 },
+    { id: 13, name: "Green", rgb: 6192150, rainbow: 8 },
+    { id: 14, name: "Red", rgb: 11546150, rainbow: 4 },
+    { id: 15, name: "Black", rgb: 1908001, rainbow: 3 }
 ]
 
 export const baseBanners = [

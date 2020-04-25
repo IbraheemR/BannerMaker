@@ -4,7 +4,7 @@
   import BannerPattern from "./BannerPattern.svelte";
 
   export let patterns = [];
-  export let base = 0;
+  export let baseColorId = 0;
   export let shield = false;
 
   let width, height;
@@ -14,13 +14,16 @@
   .viewer {
     position: relative;
 
-    width: 200px;
-    height: 400px;
+    width: 100%;
+    height: 100%;
+
+    max-width: var(--large-banner-width);
+    max-height: var(--large-banner-height);
   }
 
   .viewer.shield {
-    width: 120px;
-    height: 220px;
+    max-width: var(--large-shield-width);
+    max-height: var(--large-shield-height);
   }
 </style>
 
@@ -29,9 +32,9 @@
   bind:clientWidth={width}
   bind:clientHeight={height}
   class:shield>
-  <BannerPattern pattern={{ Pattern: 'background', Color: base }} {shield} />
+  <BannerPattern patternId="background" colorId={baseColorId} {shield} />
 
   {#each patterns as p}
-    <BannerPattern pattern={p} {shield} />
+    <BannerPattern patternId={p.Pattern} colorId={p.Color} {shield} />
   {/each}
 </div>
