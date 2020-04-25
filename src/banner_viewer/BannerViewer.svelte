@@ -14,16 +14,13 @@
   .viewer {
     position: relative;
 
-    width: 100%;
-    height: 100%;
-
-    max-width: var(--large-banner-width);
-    max-height: var(--large-banner-height);
+    width: var(--large-banner-width);
+    height: var(--large-banner-height);
   }
 
   .viewer.shield {
-    max-width: var(--large-shield-width);
-    max-height: var(--large-shield-height);
+    width: var(--large-shield-width);
+    height: var(--large-shield-height);
   }
 </style>
 

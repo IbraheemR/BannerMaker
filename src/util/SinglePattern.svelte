@@ -17,7 +17,7 @@
   .pattern-render {
     position: relative;
 
-    background-color: var(--theme-fg);
+    background: var(--theme-fg);
   }
 
   .pattern-render,

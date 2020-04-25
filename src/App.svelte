@@ -21,24 +21,40 @@
 
     display: grid;
 
-    padding: 1rem;
-    gap: 1rem;
+    padding: 0.5rem;
+    gap: 0.5rem;
 
-    grid-template-columns: 1fr repeat(3, 2fr);
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: auto auto 1fr auto;
+    grid-template-rows: auto auto 1fr auto;
     grid-template-areas:
-      "stack banner shield export"
-      "add add buttons store";
+      "banner shield buttons buttons"
+      "banner shield stack stack"
+      "banner shield add add"
+      "saved saved saved export";
   }
 
   .banner {
     grid-area: banner;
+    align-self: center;
   }
   .shield {
     grid-area: shield;
+    align-self: center;
+  }
+  .buttons {
+    grid-area: buttons;
   }
   .stack {
     grid-area: stack;
+  }
+  .add {
+    grid-area: add;
+  }
+  .saved {
+    grid-area: saved;
+  }
+  .export {
+    grid-area: export;
   }
 </style>
 
@@ -53,8 +69,14 @@
     <BannerViewer patterns={test_patterns} {baseColorId} shield />
   </div>
 
+  <div class="buttons">buttons</div>
+
   <div class="stack">
     <!-- This element will change pattern, so bind: its props -->
     <StackViewer bind:patterns={test_patterns} bind:baseColorId />
   </div>
+
+  <div class="add">Add</div>
+  <div class="saved">saved</div>
+  <div class="export">export</div>
 </div>

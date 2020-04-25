@@ -23,7 +23,7 @@
 
   .picker {
     position: absolute;
-    left: 90%;
+    left: 0;
 
     z-index: 1000;
 
@@ -36,20 +36,15 @@
   }
 
   .color.picker {
-    bottom: 100%;
+    top: 100%;
 
-    grid-template-columns: repeat(8, 1fr);
-  }
-
-  .color.picker.background {
-    top: 0;
-    bottom: unset;
+    grid-template-columns: repeat(16, 1fr);
   }
 
   .pattern.picker {
-    top: 0;
+    top: calc(100% + 2.5rem);
 
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(10, 1fr);
   }
 
   .pattern-button:not(:hover) .picker {
@@ -71,7 +66,7 @@
     </div>
   {/if}
 
-  <div class="color picker" class:background={patternId === 'background'}>
+  <div class="color picker">
     <AllColors
       rainbow
       selectedId={colorId}
