@@ -2,6 +2,7 @@
   import BannerViewer from "./banner_viewer/BannerViewer.svelte";
   import StackViewer from "./stack_viewer/StackViewer.svelte";
   import PatternButtons from "./PatternButtons.svelte";
+  import AddPattern from "./AddPattern.svelte";
 
   let patterns = [
     { patternId: "flo", colorId: 2 },
@@ -17,11 +18,11 @@
 
 <style>
   .grid {
-    width: 100%;
     height: 100%;
 
     display: grid;
 
+    margin: 0.5rem;
     padding: 0.5rem;
     gap: 0.5rem;
 
@@ -78,7 +79,9 @@
     <StackViewer bind:patterns bind:base />
   </div>
 
-  <div class="add">Add</div>
+  <div class="add">
+    <AddPattern bind:patterns />
+  </div>
   <div class="saved">saved</div>
   <div class="export">export</div>
 </div>
