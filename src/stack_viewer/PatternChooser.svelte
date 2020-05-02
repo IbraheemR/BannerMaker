@@ -6,6 +6,28 @@
 
   export let patternId;
   export let colorId;
+
+  // Logic to make hovering nice (won't show if only passing over)
+  let show = false;
+  let hover = false;
+  let showTimeout;
+  const hoverTime = 200;
+
+  let hoverOver = () => {
+    hover = true;
+    clearTimeout(showTimeout);
+    showTimeout = setTimeout(() => {
+      show = hover;
+    }, hoverTime);
+  };
+
+  let hoverOff = () => {
+    hover = false;
+    clearTimeout(showTimeout);
+    showTimeout = setTimeout(() => {
+      show = hover;
+    }, hoverTime);
+  };
 </script>
 
 <style>
@@ -35,23 +57,27 @@
   }
 
   .color.picker {
-    top: 100%;
+    top: calc(100% + 0.5rem);
 
     grid-template-columns: repeat(16, 1fr);
   }
 
   .pattern.picker {
-    top: calc(100% + 2.5rem);
+    top: calc(100% + 3.5rem);
 
     grid-template-columns: repeat(10, 1fr);
   }
 
-  .pattern-button:not(:hover) .picker {
+  .pattern-button:not(.show) .picker {
     display: none;
   }
 </style>
 
-<div class="pattern-button">
+<div
+  class="pattern-button"
+  class:show
+  on:mouseenter={hoverOver}
+  on:mouseleave={hoverOff}>
   <SinglePattern hoverable {patternId} {colorId} />
 
   {#if patternId !== 'background'}
