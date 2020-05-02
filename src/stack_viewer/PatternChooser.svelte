@@ -1,6 +1,4 @@
 <script>
-  import { patterns } from "../util/pattern_info";
-
   import AllPatterns from "../util/AllPatterns.svelte";
   import AllColors from "../util/AllColors.svelte";
 
@@ -33,6 +31,7 @@
     background-color: var(--theme-bg);
     padding: 0.5rem;
     border: 1px solid var(--theme-line);
+    border-radius: var(--theme-rounding);
   }
 
   .color.picker {

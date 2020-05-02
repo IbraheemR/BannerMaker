@@ -8,7 +8,7 @@
   export let click;
 </script>
 
-{#each [...patterns] as [id, info]}
+{#each Object.entries(patterns) as [id, info]}
   {#if !info.background}
     <SinglePattern
       patternId={id}

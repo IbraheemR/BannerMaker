@@ -1,17 +1,18 @@
 <script>
   import BannerViewer from "./banner_viewer/BannerViewer.svelte";
   import StackViewer from "./stack_viewer/StackViewer.svelte";
+  import PatternButtons from "./PatternButtons.svelte";
 
-  let test_patterns = [
-    { Pattern: "flo", Color: 2 },
-    { Pattern: "hhb", Color: 15 },
-    { Pattern: "cs", Color: 2 },
-    { Pattern: "mc", Color: 15 },
-    { Pattern: "tts", Color: 15 },
-    { Pattern: "bts", Color: 15 }
+  let patterns = [
+    { patternId: "flo", colorId: 2 },
+    { patternId: "hhb", colorId: 15 },
+    { patternId: "cs", colorId: 2 },
+    { patternId: "mc", colorId: 15 },
+    { patternId: "tts", colorId: 15 },
+    { patternId: "bts", colorId: 15 }
   ];
 
-  let baseColorId = 15;
+  let base = { patternId: "background", colorId: 15 };
 </script>
 
 <style>
@@ -61,19 +62,20 @@
 <div class="grid">
 
   <div class="banner">
-    <BannerViewer patterns={test_patterns} {baseColorId} />
+    <BannerViewer {patterns} {base} />
   </div>
 
   <div class="shield">
 
-    <BannerViewer patterns={test_patterns} {baseColorId} shield />
+    <BannerViewer {patterns} {base} shield />
   </div>
 
-  <div class="buttons">buttons</div>
+  <div class="buttons">
+    <PatternButtons bind:patterns bind:base />
+  </div>
 
   <div class="stack">
-    <!-- This element will change pattern, so bind: its props -->
-    <StackViewer bind:patterns={test_patterns} bind:baseColorId />
+    <StackViewer bind:patterns bind:base />
   </div>
 
   <div class="add">Add</div>

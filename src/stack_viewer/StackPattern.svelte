@@ -48,12 +48,17 @@
     padding: 0.2em;
   }
 
-  .button:hover {
+  .button:hover:not(:active):not(.disabled) {
     fill: var(--theme-fg);
   }
 
   .button.red {
     fill: red;
+  }
+
+  .button.red:hover:not(:active),
+  .button.disabled {
+    fill: darkred;
   }
 
   .remove {
@@ -66,6 +71,8 @@
 
     padding: 0.2rem;
     border: 1px solid var(--theme-line);
+    border-radius: var(--theme-rounding);
+
     background: var(--theme-bg);
 
     z-index: 1000;
@@ -104,7 +111,7 @@
 <div class="pattern-slot" draggable="true">
 
   {#if remove}
-    <div class="button remove" class:red={lock} on:click={remove}>
+    <div class="button remove" class:disabled={lock} on:click={remove}>
       <TrashCan16 />
       <div class="tooltip">Remove</div>
 

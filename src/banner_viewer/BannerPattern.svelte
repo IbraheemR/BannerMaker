@@ -7,7 +7,7 @@
   let image, color;
 
   $: {
-    image = patterns.get(patternId)[shield ? "shieldImage" : "bannerImage"];
+    image = patterns[patternId][shield ? "shieldImage" : "bannerImage"];
     color = colors[colorId].rgb.toString(16);
   }
 </script>
@@ -42,7 +42,7 @@
   {#if shield}
     <div
       class="background"
-      style="background-image: url({patterns.get('shield').shieldImage});" />
+      style="background-image: url({patterns.shield.shieldImage});" />
   {/if}
   <div class="background" style="background-image: url({image});" />
 

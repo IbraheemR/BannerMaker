@@ -4,7 +4,7 @@
   import BannerPattern from "./BannerPattern.svelte";
 
   export let patterns = [];
-  export let baseColorId = 0;
+  export let base;
   export let shield = false;
 
   let width, height;
@@ -29,9 +29,9 @@
   bind:clientWidth={width}
   bind:clientHeight={height}
   class:shield>
-  <BannerPattern patternId="background" colorId={baseColorId} {shield} />
+  <BannerPattern patternId={base.patternId} colorId={base.colorId} {shield} />
 
   {#each patterns as p}
-    <BannerPattern patternId={p.Pattern} colorId={p.Color} {shield} />
+    <BannerPattern patternId={p.patternId} colorId={p.colorId} {shield} />
   {/each}
 </div>

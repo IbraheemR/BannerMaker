@@ -12,6 +12,8 @@
 
 	--large-shield-width: 120px;
 	--large-shield-height: 220px;
+
+	--theme-rounding: 0.2rem;
 }
 
 * {
