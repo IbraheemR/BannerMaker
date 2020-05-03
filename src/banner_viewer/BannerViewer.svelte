@@ -29,9 +29,11 @@
   bind:clientWidth={width}
   bind:clientHeight={height}
   class:shield>
-  <BannerPattern patternId={base.patternId} colorId={base.colorId} {shield} />
+  <BannerPattern pattern={base} {shield} />
 
   {#each patterns as p}
-    <BannerPattern patternId={p.patternId} colorId={p.colorId} {shield} />
+    {#if p.visible}
+      <BannerPattern pattern={p} {shield} />
+    {/if}
   {/each}
 </div>

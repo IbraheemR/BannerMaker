@@ -4,8 +4,7 @@
 
   import SinglePattern from "../util/SinglePattern.svelte";
 
-  export let patternId;
-  export let colorId;
+  export let pattern;
 
   // Logic to make hovering nice (won't show if only passing over)
   let show = false;
@@ -34,38 +33,45 @@
   .pattern-button {
     position: relative;
     cursor: pointer;
+
+    width: 100%;
+    height: 100%;
   }
 
   .pattern-button :global(.pattern-render) {
-    width: var(--small-banner-width);
-    height: var(--small-banner-height);
+    width: 100%;
+    height: 100%;
   }
 
-  .picker {
+  .hover {
     position: absolute;
+    top: 90%;
     left: 0;
 
     z-index: 1000;
+  }
 
+  .picker {
     display: grid;
     gap: 0.5rem;
 
-    background-color: var(--theme-bg);
+    margin: 0.2rem 0;
     padding: 0.5rem;
+
+    background-color: var(--theme-bg);
+
     border: 1px solid var(--theme-line);
     border-radius: var(--theme-rounding);
   }
 
   .color.picker {
-    top: calc(100% + 0.5rem);
-
-    grid-template-columns: repeat(16, 1fr);
+    grid-template-columns: repeat(16, var(--button-size));
+    grid-template-rows: repeat(1, var(--button-size));
   }
 
   .pattern.picker {
-    top: calc(100% + 3.5rem);
-
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(10, var(--small-banner-width));
+    grid-template-rows: repeat(4, var(--small-banner-height));
   }
 
   .pattern-button:not(.show) .picker {
@@ -78,26 +84,28 @@
   class:show
   on:mouseenter={hoverOver}
   on:mouseleave={hoverOff}>
-  <SinglePattern hoverable {patternId} {colorId} />
+  <SinglePattern hoverable selected={show} {pattern} />
 
-  {#if patternId !== 'background'}
-    <div class="pattern picker">
-
-      <AllPatterns
-        selectedId={patternId}
-        {colorId}
-        click={newId => (patternId = newId)} />
-
+  <div class="hover">
+    <div class="color picker">
+      <AllColors
+        rainbow
+        selectedId={pattern.colorId}
+        click={newColorId => {
+          pattern.colorId = newColorId;
+        }} />
     </div>
-  {/if}
 
-  <div class="color picker">
-    <AllColors
-      rainbow
-      selectedId={colorId}
-      click={newColorId => {
-        colorId = newColorId;
-      }} />
+    {#if pattern.patternId !== 'background'}
+      <div class="pattern picker">
+
+        <AllPatterns
+          selectedId={pattern.patternId}
+          colorId={pattern.colorId}
+          click={newId => (pattern.patternId = newId)} />
+
+      </div>
+    {/if}
   </div>
 
 </div>

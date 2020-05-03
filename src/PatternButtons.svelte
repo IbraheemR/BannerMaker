@@ -1,6 +1,12 @@
 <script>
-  import TextButton from "./util/TextButton.svelte";
+  import Pattern from "./util/pattern";
   import { colors, patterns as patternTypes } from "./util/pattern_info";
+
+  import Erase from "carbon-icons-svelte/lib/Erase32";
+  import Shuffle from "carbon-icons-svelte/lib/Shuffle32";
+  import ColorPalette from "carbon-icons-svelte/lib/ColorPalette32";
+
+  import TextButton from "./util/TextButton.svelte";
 
   export let patterns;
   export let base;
@@ -19,14 +25,16 @@
     base.colorId = choice(colors).id;
     let newPatterns = [];
     while (newPatterns.length < 6) {
-      newPatterns.push({
-        patternId: choice(
-          Object.keys(patternTypes).filter(
-            k => k !== "background" && k !== "shield"
-          )
-        ),
-        colorId: choice(colors).id
-      });
+      newPatterns.push(
+        new Pattern(
+          choice(
+            Object.keys(patternTypes).filter(
+              k => k !== "background" && k !== "shield"
+            )
+          ),
+          choice(colors).id
+        )
+      );
     }
     patterns = newPatterns;
   };
@@ -37,11 +45,12 @@
     let shuffedColors = shuffle([...colorIds]);
     let mapping = new Map(colorIds.map((cId, i) => [cId, shuffedColors[i]]));
 
-    patterns = patterns.map(p => ({
-      ...p,
-      colorId: p.lock ? p.colorId : mapping.get(p.colorId)
-    }));
+    patterns.forEach(p => {
+      p.colorId = p.lock ? p.colorId : mapping.get(p.colorId);
+    });
     if (!base.lock) base.colorId = mapping.get(base.colorId);
+
+    patterns = patterns;
   };
 
   let shuffle = array => {
@@ -55,6 +64,15 @@
   let choice = array => array[(Math.random() * array.length) << 0];
 </script>
 
-<TextButton on:click={clearAll} {lock}>Clear All</TextButton>
-<TextButton on:click={randomPattern} {lock}>Random Pattern</TextButton>
-<TextButton on:click={randomizeColors}>Randomize Colors</TextButton>
+<TextButton on:click={clearAll} {lock}>
+  <Erase />
+  Clear All
+</TextButton>
+<TextButton on:click={randomPattern} {lock}>
+  <Shuffle />
+  Random Pattern
+</TextButton>
+<TextButton on:click={randomizeColors}>
+  <ColorPalette />
+  Randomize Colors
+</TextButton>

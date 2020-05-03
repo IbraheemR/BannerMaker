@@ -1,20 +1,19 @@
 <script>
-  import TrashCan16 from "carbon-icons-svelte/lib/TrashCan16";
-  import Locked16 from "carbon-icons-svelte/lib/Locked16";
-  import Unlocked16 from "carbon-icons-svelte/lib/Unlocked16";
-  import View16 from "carbon-icons-svelte/lib/View16";
-  import ViewOff16 from "carbon-icons-svelte/lib/ViewOff16";
-  import ArrowLeft16 from "carbon-icons-svelte/lib/ArrowLeft16";
-  import ArrowRight16 from "carbon-icons-svelte/lib/ArrowRight16";
+  import { onMount } from "svelte";
+
+  import TrashCan from "carbon-icons-svelte/lib/TrashCan32";
+  import Locked from "carbon-icons-svelte/lib/Locked32";
+  import Unlocked from "carbon-icons-svelte/lib/Unlocked32";
+  import View from "carbon-icons-svelte/lib/View32";
+  import ViewOff from "carbon-icons-svelte/lib/ViewOff32";
+  import ArrowLeft from "carbon-icons-svelte/lib/ArrowLeft32";
+  import ArrowRight from "carbon-icons-svelte/lib/ArrowRight32";
 
   import { patterns, colors } from "../util/pattern_info";
 
   import PatternChooser from "./PatternChooser.svelte";
 
-  export let patternId;
-  export let colorId;
-  export let lock = false;
-  // export let visible = true;
+  export let pattern;
 
   export let remove = null;
   export let left = null;
@@ -28,15 +27,20 @@
     margin: 0.5rem;
 
     display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.2rem;
+
+    grid-template-rows:
+      var(--button-size)
+      var(--small-banner-height)
+      var(--button-size);
+    grid-template-columns: var(--button-size) var(--button-size);
 
     /* grid-template-areas:
       "visible lock remove"
       "banner banner banner"
       "left  _ right"; */
     grid-template-areas:
-      "lock remove"
+      "visible remove"
       "banner banner"
       "left right";
   }
@@ -59,6 +63,11 @@
   .button.red:hover:not(:active),
   .button.disabled {
     fill: darkred;
+  }
+
+  .button :global(svg) {
+    width: 100%;
+    height: 100%;
   }
 
   .remove {
@@ -86,11 +95,14 @@
     grid-area: remove;
   }
 
-  .lock {
+  /* .lock {
     grid-area: lock;
-  }
+  } */
 
   .banner {
+    width: var(--small-banner-width);
+    height: 100%;
+
     grid-area: banner;
     justify-self: center;
   }
@@ -111,29 +123,31 @@
 <div class="pattern-slot" draggable="true">
 
   {#if remove}
-    <div class="button remove" class:disabled={lock} on:click={remove}>
-      <TrashCan16 />
+    <div class="button remove" class:disabled={pattern.lock} on:click={remove}>
+      <TrashCan />
       <div class="tooltip">Remove</div>
 
     </div>
   {/if}
 
+  {#if pattern.patternId !== 'background'}
+    <div
+      class="button visible"
+      class:red={!pattern.visible}
+      on:click={() => {
+        pattern.visible = !pattern.visible;
+      }}>
+      {#if pattern.visible}
+        <View />
+      {:else}
+        <ViewOff />
+      {/if}
+      <div class="tooltip">Toggle Visibility</div>
+
+    </div>
+  {/if}
+
   <!-- <div
-    class="button visible"
-    class:red={!visible}
-    on:click={() => {
-      visible = !visible;
-    }}>
-    {#if visible}
-      <View16 />
-    {:else}
-      <ViewOff16 />
-    {/if}
-    <div class="tooltip">Toggle Visibility</div>
-
-  </div> -->
-
-  <div
     class="button lock"
     class:red={lock}
     on:click={() => {
@@ -141,22 +155,23 @@
     }}>
 
     {#if lock}
-      <Locked16 />
+      <Locked />
       <div class="tooltip">Unlock</div>
     {:else}
-      <Unlocked16 />
+      <Unlocked />
       <div class="tooltip">Lock</div>
     {/if}
 
-  </div>
+  </div> -->
+
   <div class="banner">
-    <PatternChooser bind:patternId bind:colorId />
+    <PatternChooser bind:pattern />
 
   </div>
 
   {#if left}
     <div class="button left" on:click={left}>
-      <ArrowLeft16 />
+      <ArrowLeft />
       <div class="tooltip">Move Left</div>
 
     </div>
@@ -164,7 +179,7 @@
 
   {#if right}
     <div class="button right" on:click={right}>
-      <ArrowRight16 />
+      <ArrowRight />
       <div class="tooltip">Move Right</div>
 
     </div>

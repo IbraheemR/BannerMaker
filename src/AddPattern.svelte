@@ -1,4 +1,6 @@
 <script>
+  import Pattern from "./util/pattern";
+
   import AllPatterns from "./util/AllPatterns.svelte";
   import AllColors from "./util/AllColors.svelte";
 
@@ -7,29 +9,41 @@
   let colorId = 0;
 
   let click = patternId => {
-    patterns.push({
-      patternId,
-      colorId
-    });
+    patterns.push(new Pattern(patternId, colorId));
     patterns = patterns;
   };
 </script>
 
 <style>
+  .main {
+    width: 100%;
+
+    display: grid;
+    gap: 0.5rem;
+
+    grid-template-areas: "color pattern";
+    grid-template-columns: auto 1fr;
+  }
+
   .picker {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    gap: 0.5rem;
   }
 
-  .main :global(.pattern-render) {
-    width: var(--small-banner-width);
-    height: var(--small-banner-height);
-
-    margin: 0.25rem;
+  .color.picker {
+    grid-template-columns: var(--button-size) var(--button-size);
+    grid-template-rows: repeat(8, var(--button-size));
+    grid-area: color;
   }
 
-  .main :global(.color) {
-    margin: 0.25rem;
+  .pattern.picker {
+    grid-template-columns: repeat(10, var(--small-banner-width));
+    grid-template-rows: repeat(4, var(--small-banner-height));
+    grid-area: pattern;
+  }
+
+  .picker :global(*) {
+    cursor: pointer;
   }
 </style>
 

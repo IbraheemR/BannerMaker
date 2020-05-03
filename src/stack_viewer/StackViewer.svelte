@@ -8,23 +8,23 @@
 
 <style>
   .banner-stack {
+    max-width: 100%;
+
     display: flex;
 
     flex-direction: row;
+    flex-wrap: nowrap;
+
+    /* overflow-x: auto; */
   }
 </style>
 
 <div class="banner-stack">
-  <StackPattern
-    patternId="background"
-    bind:colorId={base.colorId}
-    bind:lock={base.lock} />
+  <StackPattern bind:pattern={base} />
 
   {#each patterns as pattern, i}
     <StackPattern
-      bind:patternId={pattern.patternId}
-      bind:colorId={pattern.colorId}
-      bind:lock={pattern.lock}
+      bind:pattern
       remove={() => {
         if (!pattern.lock) {
           patterns.splice(i, 1);

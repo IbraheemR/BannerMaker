@@ -1,30 +1,33 @@
 <script>
+  import Pattern from "./util/pattern";
+
   import BannerViewer from "./banner_viewer/BannerViewer.svelte";
   import StackViewer from "./stack_viewer/StackViewer.svelte";
   import PatternButtons from "./PatternButtons.svelte";
   import AddPattern from "./AddPattern.svelte";
 
   let patterns = [
-    { patternId: "flo", colorId: 2 },
-    { patternId: "hhb", colorId: 15 },
-    { patternId: "cs", colorId: 2 },
-    { patternId: "mc", colorId: 15 },
-    { patternId: "tts", colorId: 15 },
-    { patternId: "bts", colorId: 15 }
+    new Pattern("flo", 2),
+    new Pattern("hhb", 15),
+    new Pattern("cs", 2),
+    new Pattern("mc", 15),
+    new Pattern("tts", 15),
+    new Pattern("bts", 15)
   ];
 
-  let base = { patternId: "background", colorId: 15 };
+  let base = new Pattern("background", 15);
 </script>
 
 <style>
   .grid {
+    max-width: 1000px;
     height: 100%;
 
     display: grid;
 
-    margin: 0.5rem;
-    padding: 0.5rem;
-    gap: 0.5rem;
+    margin: auto;
+    padding: 1rem;
+    gap: 1rem;
 
     grid-template-columns: auto auto 1fr auto;
     grid-template-rows: auto auto 1fr auto;

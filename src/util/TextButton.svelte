@@ -20,6 +20,8 @@
 
     user-select: none;
     cursor: pointer;
+
+    fill: white;
   }
 
   .button:hover:not(:active):not(.lock) {
@@ -29,6 +31,14 @@
   .button.lock {
     border-color: darkred;
     color: darkred;
+    fill: darkred;
+  }
+
+  .button :global(svg) {
+    width: 1em;
+    height: 1em;
+    position: relative;
+    top: 2px;
   }
 </style>
 
