@@ -1,5 +1,5 @@
 <script>
-  import { colors } from "./pattern_info";
+  import { colors } from "./design_info";
 
   export let colorId = 0;
   export let selected = false;

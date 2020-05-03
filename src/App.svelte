@@ -1,21 +1,21 @@
 <script>
-  import Pattern from "./util/pattern";
+  import DesignElement from "./util/DesignElement";
 
   import BannerViewer from "./banner_viewer/BannerViewer.svelte";
-  import StackViewer from "./stack_viewer/StackViewer.svelte";
-  import PatternButtons from "./PatternButtons.svelte";
-  import AddPattern from "./AddPattern.svelte";
+  import DesignEditor from "./design_editor/DesignEditor.svelte";
+  import DesignButtons from "./DesignButtons.svelte";
+  import AddDesignElement from "./AddDesignElement.svelte";
 
-  let patterns = [
-    new Pattern("flo", 2),
-    new Pattern("hhb", 15),
-    new Pattern("cs", 2),
-    new Pattern("mc", 15),
-    new Pattern("tts", 15),
-    new Pattern("bts", 15)
+  let design = [
+    new DesignElement("flo", 2),
+    new DesignElement("hhb", 15),
+    new DesignElement("cs", 2),
+    new DesignElement("mc", 15),
+    new DesignElement("tts", 15),
+    new DesignElement("bts", 15)
   ];
 
-  let base = new Pattern("background", 15);
+  let base = new DesignElement("background", 15);
 </script>
 
 <style>
@@ -66,24 +66,24 @@
 <div class="grid">
 
   <div class="banner">
-    <BannerViewer {patterns} {base} />
+    <BannerViewer {design} {base} />
   </div>
 
   <div class="shield">
 
-    <BannerViewer {patterns} {base} shield />
+    <BannerViewer {design} {base} shield />
   </div>
 
   <div class="buttons">
-    <PatternButtons bind:patterns bind:base />
+    <DesignButtons bind:design bind:base />
   </div>
 
   <div class="stack">
-    <StackViewer bind:patterns bind:base />
+    <DesignEditor bind:design bind:base />
   </div>
 
   <div class="add">
-    <AddPattern bind:patterns />
+    <AddDesignElement bind:design />
   </div>
   <div class="saved">saved</div>
   <div class="export">export</div>

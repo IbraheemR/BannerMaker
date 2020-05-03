@@ -1,13 +1,14 @@
 <script>
-  import { patterns, colors } from "../util/pattern_info";
+  import { patterns, colors } from "../util/design_info";
 
-  export let pattern;
+  export let designElement;
   export let shield = false;
+
   let image, color;
 
   $: {
-    image = pattern.banner[shield ? "shieldImage" : "bannerImage"];
-    color = pattern.color.rgb.toString(16);
+    image = designElement.pattern[shield ? "shieldImage" : "bannerImage"];
+    color = designElement.color.rgb.toString(16);
   }
 </script>
 
@@ -37,7 +38,7 @@
   }
 </style>
 
-{#if pattern.patternId == 'background'}
+{#if designElement.isBackground}
   {#if shield}
     <div
       class="background"

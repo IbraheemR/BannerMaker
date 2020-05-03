@@ -1,6 +1,6 @@
 <script>
-  import { patterns } from "./pattern_info";
-  import Pattern from "./pattern";
+  import DesignElement from "./DesignElement";
+  import { patterns } from "./design_info";
 
   import SinglePattern from "./SinglePattern.svelte";
 
@@ -10,9 +10,10 @@
 </script>
 
 {#each Object.entries(patterns) as [id, info]}
-  {#if !info.background}
+  {#if !info.isBackground}
     <SinglePattern
-      pattern={new Pattern(id, colorId)}
+      patternId={id}
+      {colorId}
       hoverable
       selected={id == selectedId}
       click={() => click(id)} />

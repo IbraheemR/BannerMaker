@@ -1,9 +1,9 @@
 <script>
   import { onMount } from "svelte";
 
-  import BannerPattern from "./BannerPattern.svelte";
+  import DesignElementViewer from "./DesignElementViewer.svelte";
 
-  export let patterns = [];
+  export let design = [];
   export let base;
   export let shield = false;
 
@@ -29,11 +29,11 @@
   bind:clientWidth={width}
   bind:clientHeight={height}
   class:shield>
-  <BannerPattern pattern={base} {shield} />
+  <DesignElementViewer designElement={base} {shield} />
 
-  {#each patterns as p}
-    {#if p.visible}
-      <BannerPattern pattern={p} {shield} />
+  {#each design as designElement}
+    {#if designElement.visible}
+      <DesignElementViewer {designElement} {shield} />
     {/if}
   {/each}
 </div>

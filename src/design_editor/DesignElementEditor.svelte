@@ -9,11 +9,11 @@
   import ArrowLeft from "carbon-icons-svelte/lib/ArrowLeft32";
   import ArrowRight from "carbon-icons-svelte/lib/ArrowRight32";
 
-  import { patterns, colors } from "../util/pattern_info";
+  import { patterns, colors } from "../util/design_info";
 
-  import PatternChooser from "./PatternChooser.svelte";
+  import DesignElementChooser from "./DesignElementChooser.svelte";
 
-  export let pattern;
+  export let designElement;
 
   export let remove = null;
   export let left = null;
@@ -123,21 +123,24 @@
 <div class="pattern-slot" draggable="true">
 
   {#if remove}
-    <div class="button remove" class:disabled={pattern.lock} on:click={remove}>
+    <div
+      class="button remove"
+      class:disabled={designElement.lock}
+      on:click={remove}>
       <TrashCan />
       <div class="tooltip">Remove</div>
 
     </div>
   {/if}
 
-  {#if pattern.patternId !== 'background'}
+  {#if !designElement.isBackground}
     <div
       class="button visible"
-      class:red={!pattern.visible}
+      class:red={!designElement.visible}
       on:click={() => {
-        pattern.visible = !pattern.visible;
+        designElement.visible = !designElement.visible;
       }}>
-      {#if pattern.visible}
+      {#if designElement.visible}
         <View />
       {:else}
         <ViewOff />
@@ -165,7 +168,7 @@
   </div> -->
 
   <div class="banner">
-    <PatternChooser bind:pattern />
+    <DesignElementChooser bind:designElement />
 
   </div>
 

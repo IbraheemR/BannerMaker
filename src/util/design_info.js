@@ -4,12 +4,12 @@ export const patterns = {
         name: "Banner Background",
         bannerImage: "/patterns/banner/base.png",
         shieldImage: "/patterns/shield/base.png",
-        background: true
+        isBackground: true
     },
     shield: {
         name: "Shield Base",
         shieldImage: "/patterns/shield/shield_base.png",
-        background: true
+        isBackground: true
     },
     bs: {
         name: "Base",

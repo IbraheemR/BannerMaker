@@ -1,5 +1,5 @@
 <script>
-  import { colors } from "./pattern_info";
+  import { colors } from "./design_info";
 
   import SingleColor from "./SingleColor.svelte";
 

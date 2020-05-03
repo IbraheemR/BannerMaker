@@ -1,11 +1,11 @@
 <script>
-  // TODO: should probably merge with SinglePattern.svelte, but for now they do sligntly different things.
+  import DesignElement from "../util/DesignElement";
+  import { patterns, colors } from "../util/design_info";
 
-  import { patterns, colors } from "../util/pattern_info";
+  import DesignElementViewer from "../banner_viewer/DesignElementViewer.svelte";
 
-  import BannerPattern from "../banner_viewer/BannerPattern.svelte";
-
-  export let pattern;
+  export let patternId;
+  export let colorId;
 
   export let hoverable = false;
   export let selected = false;
@@ -31,5 +31,5 @@
 </style>
 
 <div class="pattern-render" class:hoverable class:selected on:click={click}>
-  <BannerPattern {pattern} />
+  <DesignElementViewer designElement={new DesignElement(patternId, colorId)} />
 </div>

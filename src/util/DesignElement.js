@@ -1,6 +1,6 @@
-import { patterns, colors } from "./pattern_info";
+import { patterns, colors } from "./design_info";
 
-export default class Patttern {
+export default class DesignElement {
     constructor(patternId, colorId) {
         this.patternId = patternId;
         this.colorId = colorId;
@@ -9,12 +9,15 @@ export default class Patttern {
         this.lock = false;
     }
 
-    get banner() {
+    get pattern() {
         return patterns[this.patternId]
     }
 
     get color() {
         return colors[this.colorId]
+    }
 
+    get isBackground() {
+        return this.pattern.isBackground
     }
 }

@@ -1,16 +1,16 @@
 <script>
-  import Pattern from "./util/pattern";
+  import DesignElement from "./util/DesignElement";
 
   import AllPatterns from "./util/AllPatterns.svelte";
   import AllColors from "./util/AllColors.svelte";
 
-  export let patterns;
+  export let design;
 
   let colorId = 0;
 
   let click = patternId => {
-    patterns.push(new Pattern(patternId, colorId));
-    patterns = patterns;
+    design.push(new DesignElement(patternId, colorId));
+    design = design;
   };
 </script>
 

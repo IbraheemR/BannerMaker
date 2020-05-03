@@ -4,7 +4,7 @@
 
   import SinglePattern from "../util/SinglePattern.svelte";
 
-  export let pattern;
+  export let designElement;
 
   // Logic to make hovering nice (won't show if only passing over)
   let show = false;
@@ -30,7 +30,7 @@
 </script>
 
 <style>
-  .pattern-button {
+  .design-element-button {
     position: relative;
     cursor: pointer;
 
@@ -38,7 +38,7 @@
     height: 100%;
   }
 
-  .pattern-button :global(.pattern-render) {
+  .design-element-button :global(.pattern-render) {
     width: 100%;
     height: 100%;
   }
@@ -74,35 +74,39 @@
     grid-template-rows: repeat(4, var(--small-banner-height));
   }
 
-  .pattern-button:not(.show) .picker {
+  .design-element-button:not(.show) .picker {
     display: none;
   }
 </style>
 
 <div
-  class="pattern-button"
+  class="design-element-button"
   class:show
   on:mouseenter={hoverOver}
   on:mouseleave={hoverOff}>
-  <SinglePattern hoverable selected={show} {pattern} />
+  <SinglePattern
+    hoverable
+    selected={show}
+    patternId={designElement.patternId}
+    colorId={designElement.colorId} />
 
   <div class="hover">
     <div class="color picker">
       <AllColors
         rainbow
-        selectedId={pattern.colorId}
+        selectedId={designElement.colorId}
         click={newColorId => {
-          pattern.colorId = newColorId;
+          designElement.colorId = newColorId;
         }} />
     </div>
 
-    {#if pattern.patternId !== 'background'}
+    {#if !designElement.isBackground}
       <div class="pattern picker">
 
         <AllPatterns
-          selectedId={pattern.patternId}
-          colorId={pattern.colorId}
-          click={newId => (pattern.patternId = newId)} />
+          selectedId={designElement.patternId}
+          colorId={designElement.colorId}
+          click={newId => (designElement.patternId = newId)} />
 
       </div>
     {/if}
