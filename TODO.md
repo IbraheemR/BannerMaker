@@ -24,6 +24,3 @@ DesignElement
 - Color color (computed based on colorId)
 - bool isBackground
 
-Color
-- 
-
